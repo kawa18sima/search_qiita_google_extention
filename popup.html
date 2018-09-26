@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <form accept-charset="utf-8" v-on:submit.prevent>
+        <input type="text" v-model="searchText">
+        <button v-on:click="searchPosts">検索</button>
+      </form>
+      <section v-if="hasError">
+        接続できません
+      </section>
+      <section v-else>
+        <div v-if="loading">
+          Loading...
+        </div>
+        <ul>
+          <li v-for="post in posts">
+            <a v-on:click="createTab(post.url)" v-bind:href="post.url">{{post.title}}</a>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    
+    <script src="js/popup.js"></script>
+  </body>
+</html>
